@@ -1,7 +1,5 @@
 package conta;
 
-import org.jetbrains.annotations.NotNull;
-
 public abstract class Conta implements IConta {
     protected static final int AGENCIA_PADRAO = 1;
     private static int SEQUENCIAL = 1;
@@ -29,7 +27,7 @@ public abstract class Conta implements IConta {
         saldo += valor;
     }
 
-    public void transferir(double valor, @NotNull Conta contaDestino) {
+    public void transferir(double valor, Conta contaDestino) {
         this.sacar(valor);
         contaDestino.depositar(valor);
     }
@@ -46,5 +44,11 @@ public abstract class Conta implements IConta {
 
     public double getSaldo() {
         return saldo;
+    }
+
+    protected void imprimirInfosComuns() {
+        System.out.println(String.format("Agencia: %d", this.agencia));
+        System.out.println(String.format("Número: %d", this.numero));
+        System.out.println(String.format("Saldo: %1$,.2f", this.saldo));
     }
 }
